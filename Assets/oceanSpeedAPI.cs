@@ -1,15 +1,17 @@
-using UnityEngine;
-using UnityEngine.Networking;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Networking;
 
 // Main MonoBehaviour class
 public class WaveDisplacementController : MonoBehaviour
 {
     public Material targetMaterial;
     private string apiUrl = "https://marine-api.open-meteo.com/v1/marine?latitude=41.375&longitude=-8.75&hourly=wave_height&timezone=Europe%2FLondon";
+    public TextMeshPro waveHeightText;
 
     void Start()
     {
@@ -53,6 +55,10 @@ public class WaveDisplacementController : MonoBehaviour
                         else
                         {
                             Debug.LogWarning("Target material is not assigned.");
+                        }
+                        if (waveHeightText != null)
+                        {
+                            waveHeightText.text = $"Wave Height: {waveHeight:0.00} m";
                         }
                     }
                     else

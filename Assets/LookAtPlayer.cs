@@ -8,7 +8,6 @@ public class FaceCamera : MonoBehaviour
         {
             // Make the canvas face the camera
             transform.LookAt(Camera.main.transform);
-            // Optionally, reverse to face the camera front, not back
             transform.Rotate(0, 180, 0);
         }
     }
