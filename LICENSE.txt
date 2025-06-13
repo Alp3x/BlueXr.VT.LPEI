@@ -1,0 +1,15 @@
+Copyright (c) Francisco Carvalho 2025
+
+This software is made available for personal and non-commercial use only.
+
+You may:
+- Download and use the code for personal or internal purposes.
+
+You may not:
+- Modify, distribute, sublicense, or sell any part of this code.
+- Use this code or any derivative work for commercial purposes.
+- Publish modified versions of this software.
+
+The software is provided "as is", without warranty of any kind, express or implied.
+
+For commercial or redistribution rights, please contact al78557@alunos.utad.pt.
