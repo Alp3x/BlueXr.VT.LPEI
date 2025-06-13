@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class WindTurbineDisplay : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class WindTurbineDisplay : MonoBehaviour
     public TextMeshPro textBubbleShowers;
     public TextMeshPro Rain;
     public TextMeshPro windSpeed;
+    public TextMeshPro snow;
+    public TextMeshPro temp;
 
 
     public void SetVisibility(float visibility)
@@ -23,6 +24,17 @@ public class WindTurbineDisplay : MonoBehaviour
     {
         if (Rain != null)
             Rain.text = $"Rain: {rain:0.00} mm";
+    }
+    public void SetSnow(float snowval)
+    {
+        if (snow != null)
+            snow.text = $"snow: {snowval:0.00} cm";
+    }
+
+    public void SetTemp(float tempTest)
+    {
+        if (temp != null)
+            temp.text = $"Temperatura: {tempTest:0.00} ºC";
     }
 
     public void SetShowers(float showers)

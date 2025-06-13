@@ -25,7 +25,7 @@ public class MeteoAPIClient : MonoBehaviour
 
     private IEnumerator RequestDataRoutine()
     {
-        string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=wind_speed_10m,wind_direction_10m,visibility,showers,rain";
+        string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=wind_speed_10m,wind_direction_10m,visibility,showers,rain,temperature_2m,snowfall";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             yield return www.SendWebRequest();
@@ -36,7 +36,6 @@ public class MeteoAPIClient : MonoBehaviour
             }
             else
             {
-                Debug.LogError("API request failed: " + www.error);
             }
         }
     }

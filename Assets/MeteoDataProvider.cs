@@ -16,6 +16,10 @@ public class MeteoDataProvider : MonoBehaviour
     public float Showers { get; private set; }
     public float Rain { get; private set; }
 
+    public float Temp { get; private set; }
+    public float Snowfall { get; private set; }
+
+    [Obsolete]
     private void Awake()
     {
         if (apiClient == null)
@@ -53,6 +57,8 @@ public class MeteoDataProvider : MonoBehaviour
         Visibility = root.hourly.visibility[i];
         Showers = root.hourly.showers[i];
         Rain = root.hourly.rain[i];
+        Temp = root.hourly.temperature_2m[i];
+        Snowfall = root.hourly.snowfall[i];
 
     }
 }

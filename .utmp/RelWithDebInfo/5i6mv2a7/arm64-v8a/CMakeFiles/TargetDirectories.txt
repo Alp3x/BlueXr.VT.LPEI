@@ -1,0 +1,5 @@
+C:/Users/Alp3x/Documents/GitHub/ProjetoLab/.utmp/RelWithDebInfo/5i6mv2a7/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Alp3x/Documents/GitHub/ProjetoLab/.utmp/RelWithDebInfo/5i6mv2a7/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/Alp3x/Documents/GitHub/ProjetoLab/.utmp/RelWithDebInfo/5i6mv2a7/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Users/Alp3x/Documents/GitHub/ProjetoLab/.utmp/RelWithDebInfo/5i6mv2a7/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/Alp3x/Documents/GitHub/ProjetoLab/.utmp/RelWithDebInfo/5i6mv2a7/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

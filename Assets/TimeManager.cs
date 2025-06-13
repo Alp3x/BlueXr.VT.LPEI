@@ -21,7 +21,6 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Color sunRiseFog;
     [SerializeField] private Color DayFog;
     [SerializeField] private Color SunSetFog;
-    public LightingSettingsSwitcher switcher;
 
     [SerializeField] private Light globalLight;
     private WeatherModeManager modeManager;
@@ -48,7 +47,7 @@ public class TimeManager : MonoBehaviour
         Minutes = DateTime.Now.Minute;
         Hours = DateTime.Now.Hour;
         Days = DateTime.Now.Day;
-        Debug.Log($"Current Time: {Days} Days, {Hours} Hours, {Minutes} Minutes");
+ 
         modeManager = WeatherModeManager.Instance;
 
         OnHoursChange(Hours);
@@ -72,7 +71,6 @@ public class TimeManager : MonoBehaviour
     public void SetManualHour(float value)
     {
         manualHour = value;
-        Debug.Log($"Manual Hour set to {manualHour}");
     }
 
     private void OnMinutesChange(int value)
@@ -101,9 +99,7 @@ public class TimeManager : MonoBehaviour
             UnityEngine.RenderSettings.fogColor = sunRiseFog;
             StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 10f));
             StartCoroutine(LerpLight(graddientNightToSunrise, 10f));
-            switcher.ApplyLightingSettings(2);
 
-            Debug.Log("Sunrise Skybox and Lighting Applied");
         }
         else if (hours >= 12 && hours <= 20)
         {
@@ -112,8 +108,6 @@ public class TimeManager : MonoBehaviour
             UnityEngine.RenderSettings.fogColor = DayFog;
             StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 10f));
             StartCoroutine(LerpLight(graddientSunriseToDay, 10f));
-            switcher.ApplyLightingSettings(3);
-            Debug.Log("Day Skybox and Lighting Applied");
         }
         else if (hours >= 20 && hours <= 22)
         {
@@ -121,17 +115,13 @@ public class TimeManager : MonoBehaviour
             UnityEngine.RenderSettings.fogColor = SunSetFog ;
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 10f));
             StartCoroutine(LerpLight(graddientDayToSunset, 10f));
-            switcher.ApplyLightingSettings(4);
-            Debug.Log("Sunset Skybox and Lighting Applied");
         }
         else if(hours >= 22 || hours < 6)
         {
             //Night
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
             StartCoroutine(LerpLight(graddientSunsetToNight, 10f));
-            switcher.ApplyLightingSettings(1);
             UnityEngine.RenderSettings.fogColor = nigthFog;
-            Debug.Log("Night Skybox and Lighting Applied");
         }
     }
 
@@ -141,25 +131,21 @@ public class TimeManager : MonoBehaviour
         {
             StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 10f));
             StartCoroutine(LerpLight(graddientNightToSunrise, 10f));
-            switcher.ApplyLightingSettings(2);
         }
         else if (value == 8)
         {
             StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 10f));
             StartCoroutine(LerpLight(graddientSunriseToDay, 10f));
-            switcher.ApplyLightingSettings(3);
         }
         else if (value == 18)
         {
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 10f));
             StartCoroutine(LerpLight(graddientDayToSunset, 10f));
-            switcher.ApplyLightingSettings(4);
         }
         else if (value == 22)
         {
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
             StartCoroutine(LerpLight(graddientSunsetToNight, 10f));
-            switcher.ApplyLightingSettings(1);
         }
     }
 

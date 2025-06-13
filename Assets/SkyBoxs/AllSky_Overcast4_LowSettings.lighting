@@ -7,13 +7,13 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AllSky_Overcast4_LowSettings
-  serializedVersion: 9
+  serializedVersion: 8
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
-  m_AlbedoBoost: 2.24
-  m_IndirectOutputScale: 2.52
+  m_AlbedoBoost: 1
+  m_IndirectOutputScale: 1
   m_UsingShadowmask: 0
   m_BakeBackend: 2
   m_LightmapMaxSize: 1024
@@ -39,7 +39,7 @@ LightingSettings:
   m_ForceUpdates: 0
   m_PVRCulling: 1
   m_PVRSampling: 1
-  m_PVRDirectSampleCount: 16
+  m_PVRDirectSampleCount: 32
   m_PVRSampleCount: 512
   m_PVREnvironmentSampleCount: 512
   m_PVREnvironmentReferencePointCount: 2048

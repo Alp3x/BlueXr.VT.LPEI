@@ -1,10 +1,13 @@
-    using UnityEngine;
+using System.Diagnostics;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class WeatherParticleController : MonoBehaviour
 {
     [Header("Particle Systems")]
     public ParticleSystem visibilityParticleSystem;
     public ParticleSystem rainParticleSystem;
+    public ParticleSystem snowParticleSystem;
 
     [Header("Weather Provider")]
     public MeteoDataProvider meteoProvider; // Assign in Inspector or auto-find
@@ -17,7 +20,11 @@ public class WeatherParticleController : MonoBehaviour
 
     private void Update()
     {
-        float visibility, rain, airSpeed, showers;
+        float visibility = 1000f;
+        float rain = 0f;
+        float airSpeed = 0f;
+        float showers = 0;
+        float snow = 0f;
 
         // Use API or manual values based on WeatherModeManager
         if (WeatherModeManager.Instance != null && !WeatherModeManager.Instance.useAPIMode)
@@ -26,27 +33,20 @@ public class WeatherParticleController : MonoBehaviour
             rain = WeatherModeManager.Instance.manualRain;
             airSpeed = WeatherModeManager.Instance.manualAirSpeed;
             showers = WeatherModeManager.Instance.manualShowers;
+            snow = WeatherModeManager.Instance.manualSnow;
         }
-        else if (meteoProvider != null)
+        if (meteoProvider != null)
         {
             visibility = meteoProvider.Visibility;
             rain = meteoProvider.Rain;
             airSpeed = meteoProvider.AirSpeed;
             showers = meteoProvider.Showers;
+            snow = meteoProvider.Snowfall;
         }
-        else
-        {
-            // Fallback defaults
-            visibility = 10000f;
-            rain = 0f;
-            airSpeed = 0f;
-            showers = 0f;
-        }
-
-        UpdateParticles(visibility, rain, airSpeed,showers);
+        UpdateParticles(visibility, rain, airSpeed,showers,snow);
     }
 
-    public void UpdateParticles(float visibility, float rain, float airSpeed,float showers)
+    public void UpdateParticles(float visibility, float rain, float airSpeed,float showers,float snow)
     {
         if (rainParticleSystem != null)
         {
@@ -65,14 +65,14 @@ public class WeatherParticleController : MonoBehaviour
             }
             else if (rain > 10f)
             {
-                emission.rateOverTime = 500;
+                emission.rateOverTime = 250;
                 var vol = rainParticleSystem.velocityOverLifetime;
                 vol.radial = airSpeed >= 7 ? 0.1f : 0.05f;
                 rainParticleSystem.Play();
             }
             else if(showers > 0.01f && showers <= 1f)
             {
-                emission.rateOverTime = 2.5f;
+                emission.rateOverTime = 5f;
                 rainParticleSystem.Play();
             }
             else 
@@ -107,6 +107,32 @@ public class WeatherParticleController : MonoBehaviour
                 main.maxParticles = 0;
                 emission.rateOverTime = 0;
                 visibilityParticleSystem.Play();
+            }
+        }
+        if(snowParticleSystem != null)
+        {
+            var emission = snowParticleSystem.emission;
+            var main = snowParticleSystem.main;
+            if (snow > 0.1f && snow <= 5f)
+            {
+                emission.rateOverTime = 5;
+                snowParticleSystem.Play();
+            }
+            else if (snow > 5f && snow <= 10f)
+            {
+                emission.rateOverTime = 10;
+                snowParticleSystem.Play();
+            }
+            else if (snow > 10f)
+            {
+                emission.rateOverTime = 50;
+                var vol = snowParticleSystem.velocityOverLifetime;
+                vol.radial = airSpeed >= 7 ? 0.1f : 0.05f;
+                snowParticleSystem.Play();
+            }
+            else
+            {
+                snowParticleSystem.Stop();
             }
         }
     }

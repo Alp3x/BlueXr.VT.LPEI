@@ -26,11 +26,9 @@ public class WaveDisplacementController : MonoBehaviour
 
             if (request.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Error fetching marine data: " + request.error);
             }
             else
             {
-                Debug.Log("Marine data fetched successfully.");
                 string json = request.downloadHandler.text;
                 MarineData data = JsonUtility.FromJson<MarineData>(json);
 
@@ -46,7 +44,6 @@ public class WaveDisplacementController : MonoBehaviour
                     if (index != -1 && index < data.hourly.wave_height.Count)
                     {
                         float waveHeight = data.hourly.wave_height[index];
-                        Debug.Log("Current Hour Wave Height: " + waveHeight);
 
                         if (targetMaterial != null)
                         {
@@ -54,7 +51,6 @@ public class WaveDisplacementController : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogWarning("Target material is not assigned.");
                         }
                         if (waveHeightText != null)
                         {
@@ -63,12 +59,10 @@ public class WaveDisplacementController : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning("Current hour not found in wave data.");
                     }
                 }
                 else
                 {
-                    Debug.LogWarning("Invalid marine data received.");
                 }
             }
         }

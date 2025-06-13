@@ -32,7 +32,7 @@ public class WindTurbineWeatherSync : MonoBehaviour
         // Decide which values to use
         bool useAPI = WeatherModeManager.Instance == null || WeatherModeManager.Instance.useAPIMode;
 
-        float airSpeed, visibility, showers, rain;
+        float airSpeed, visibility, showers, rain, snow, temp;
         int airDirection;
 
         if (useAPI && meteoProvider != null)
@@ -42,6 +42,8 @@ public class WindTurbineWeatherSync : MonoBehaviour
             visibility = meteoProvider.Visibility;
             showers = meteoProvider.Showers;
             rain = meteoProvider.Rain;
+            snow = meteoProvider.Snowfall;
+            temp = meteoProvider.Temp;
         }
         else
         {
@@ -51,6 +53,8 @@ public class WindTurbineWeatherSync : MonoBehaviour
             visibility = mgr.manualVisibility;
             showers = mgr.manualShowers;
             rain = mgr.manualRain;
+            snow = mgr.manualSnow;
+            temp = meteoProvider.Temp;
         }
 
         turbineDisplay.SetWindSpeed(airSpeed);
@@ -58,6 +62,8 @@ public class WindTurbineWeatherSync : MonoBehaviour
         turbineDisplay.SetVisibility(visibility);
         turbineDisplay.SetRain(rain);
         turbineDisplay.SetShowers(showers);
+        turbineDisplay.SetSnow(snow);
+        turbineDisplay.SetTemp(temp);
 
         const double airDensity = 1.225;
         double v = airSpeed;

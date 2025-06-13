@@ -13,6 +13,8 @@ public class MeteoDataModel
         public List<float> visibility;
         public List<float> showers;
         public List<float> rain;
+        public List<float> temperature_2m;
+        public List<float> snowfall;
     }
 
     [Serializable]

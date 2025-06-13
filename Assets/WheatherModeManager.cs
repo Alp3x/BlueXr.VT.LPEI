@@ -13,6 +13,8 @@ public class WeatherModeManager : MonoBehaviour
     public float manualVisibility = 10000f;
     public float manualShowers = 0f;
     public float manualRain = 0f;
+    public float manualSnow = 0f;
+
 
     private void Awake()
     {
@@ -28,36 +30,35 @@ public class WeatherModeManager : MonoBehaviour
     public void SetManualAirSpeed(float value)
     {
         manualAirSpeed = value;
-        Debug.Log($"Manual Air Speed set to {manualAirSpeed} m/s");
     }
     public void SetManualAirDirection(float value)
     {
         manualAirDirection = Mathf.RoundToInt(value);
-        Debug.Log($"Manual Air Direction set to {manualAirDirection} degrees");
     }
     public void SetManualVisibility(float value)
     {
         float minVis = 10f;
         float maxVis = 10000f;
         manualVisibility = Mathf.Exp(Mathf.Lerp(Mathf.Log(maxVis), Mathf.Log(minVis), value));
-        Debug.Log($"Manual Visibility set to {manualVisibility} m (slider value: {value})");
     }
     public void SetManualShowers(float value)
     {
         manualShowers = value;
-        Debug.Log($"Manual Showers set to {manualShowers} mm");
+
     }
     public void SetManualRain(float value)
     {
         manualRain = value;
-        Debug.Log($"Manual Rain set to {manualRain} mm");
+    }
+
+    public void SetManualSnow(float value)
+    {
+        manualSnow = value;
     }
 
     // Method for UI toggle
     public void SetAPIMode(bool value)
     {
         useAPIMode = !useAPIMode;
-        Debug.Log($"Weather Mode set to {(useAPIMode ? "API" : "Manual")}");
-        Debug.Log(useAPIMode);
     }
 }
