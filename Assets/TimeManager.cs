@@ -59,14 +59,10 @@ public class TimeManager : MonoBehaviour
     {
         if (modeManager != null && !modeManager.useAPIMode)
         {
-            // Manual mode: use slider value
             Hours = Mathf.FloorToInt(manualHour);
-            // Optionally, you can also set Minutes if you want finer control
-            // Minutes = Mathf.FloorToInt((manualHour - Hours) * 60f);
         }
         else
         {
-            // API/auto mode: use system time
             Hours = DateTime.Now.Hour;
             Minutes = DateTime.Now.Minute;
             Days = DateTime.Now.Day;
@@ -81,7 +77,10 @@ public class TimeManager : MonoBehaviour
 
     private void OnMinutesChange(int value)
     {
-        globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
+        float totalMinutes = Hours * 60f + Minutes;
+        float sunAngle = (totalMinutes / 1440f) * 360f;
+
+        globalLight.transform.rotation = Quaternion.Euler(new Vector3(sunAngle, 0f, 0f));
         if (value >= 60)
         {
             Hours++;

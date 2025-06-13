@@ -60,12 +60,12 @@ public class WeatherParticleController : MonoBehaviour
             }
             else if (rain > 5f && rain <= 10f)
             {
-                emission.rateOverTime = 10;
+                emission.rateOverTime = 100;
                 rainParticleSystem.Play();
             }
             else if (rain > 10f)
             {
-                emission.rateOverTime = 100;
+                emission.rateOverTime = 500;
                 var vol = rainParticleSystem.velocityOverLifetime;
                 vol.radial = airSpeed >= 7 ? 0.1f : 0.05f;
                 rainParticleSystem.Play();
@@ -88,21 +88,21 @@ public class WeatherParticleController : MonoBehaviour
 
             if (visibility <= 30)
             {
-                main.maxParticles = 500;
+                main.maxParticles = 5000;
                 main.startLifetime = 5f;
                 main.startSpeedMultiplier = airSpeed / 10;
-                emission.rateOverTime = 100;
+                emission.rateOverTime = 500;
                 visibilityParticleSystem.Play();
             }
-            else if (visibility > 30 && visibility <= 100)
+            else if (visibility > 30 && visibility <= 2500)
             {
-                main.maxParticles = 500;
+                main.maxParticles = 5000;
                 main.startLifetime = 30f;
                 main.startSpeedMultiplier = airSpeed / 100;
                 emission.rateOverTime = 50;
                 visibilityParticleSystem.Play();
             }
-            else if (visibility > 100)
+            else if (visibility > 250)
             {
                 main.maxParticles = 0;
                 emission.rateOverTime = 0;
